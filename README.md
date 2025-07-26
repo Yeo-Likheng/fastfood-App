@@ -1,10 +1,5 @@
 <h1 align="center">Fast Food App</h1>
 
-![Demo App](/frontend/public/screenshot-for-readme.png)
-
-About This Course:
-
--   🚀 Project Setup
 -   🗄️ MongoDB & Redis Integration
 -   💳 Stripe Payment Setup
 -   🔐 Robust Authentication System

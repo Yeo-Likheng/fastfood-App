@@ -1,5 +1,6 @@
 import Coupon from "../models/coupon.model.js";
 import Order from "../models/order.model.js";
+import SessionProduct from "../models/session.model.js";
 import { stripe } from "../lib/stripe.js";
 
 export const createCheckoutSession = async (req, res) => {
@@ -48,19 +49,27 @@ export const createCheckoutSession = async (req, res) => {
 						{
 							coupon: await createStripeCoupon(coupon.discountPercentage),
 						},
-				  ]
+				]
 				: [],
 			metadata: {
 				userId: req.user._id.toString(),
 				couponCode: couponCode || "",
-				products: JSON.stringify(
-					products.map((p) => ({
-						id: p._id,
-						quantity: p.quantity,
-						price: p.price,
-					}))
-				),
+				// Store only essential info, retrieve full product details from your DB later
+				productCount: products.length.toString(),
+				totalItems: products.reduce((sum, p) => sum + p.quantity, 0).toString(),
 			},
+		});
+
+		// Store the full product details in your database with session ID as reference
+		await SessionProduct.create({
+			sessionId: session.id,
+			userId: req.user._id,
+			products: products.map((p) => ({
+				id: p._id,
+				quantity: p.quantity,
+				price: p.price,
+			})),
+			couponCode: couponCode || "",
 		});
 
 		if (totalAmount >= 2500) {
@@ -91,11 +100,14 @@ export const checkoutSuccess = async (req, res) => {
 				);
 			}
 
-			// create a new Order
-			const products = JSON.parse(session.metadata.products);
+			const sessionData = await SessionProduct.findOne({ sessionId });
+			if (!sessionData) {
+				return res.status(404).json({ message: "Session data not found" });
+			}
+
 			const newOrder = new Order({
 				user: session.metadata.userId,
-				products: products.map((product) => ({
+				products: sessionData.products.map((product) => ({
 					product: product.id,
 					quantity: product.quantity,
 					price: product.price,
@@ -105,6 +117,9 @@ export const checkoutSuccess = async (req, res) => {
 			});
 
 			await newOrder.save();
+
+			// Clean up the session data after successful order creation
+			await SessionProduct.findOneAndDelete({ sessionId });
 
 			res.status(200).json({
 				success: true,
@@ -141,4 +156,3 @@ async function createNewCoupon(userId) {
 
 	return newCoupon;
 }
-
