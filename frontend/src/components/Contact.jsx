@@ -1,16 +1,16 @@
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-primary">
+    <section id="contact" className="py-20 bg-[#273E47]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4">Visit Us Today</h2>
-          <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#D8C99B] mb-4">Visit Us Today</h2>
+          <p className="text-xl text-[#D8C99B]/80 max-w-2xl mx-auto">
             Find us at our locations or order online for delivery
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="bg-warm-accent border-none shadow-pop">
+          <div className="bg-[#d8c99b] border-none shadow-pop">
             <div>
               <h2 className="text-xl font-bold text-primary text-center">Downtown Location</h2>
             </div>
