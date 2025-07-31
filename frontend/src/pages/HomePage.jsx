@@ -5,6 +5,8 @@ import FeaturedProducts from "../components/FeaturedProducts";
 import Specials from "../components/Specials"
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
+import useScrollAnimation from "../hooks/useScrollAnimation";
 
 const categories = [
 	{ href: "/burgers", name: "Burgers", imageUrl: "/burger.jpg" },
@@ -18,9 +20,14 @@ const categories = [
 const HomePage = () => {
 	const { fetchFeaturedProducts, products, isLoading } = useProductStore();
 
+	const [categoriesRef, categoriesVisible] = useScrollAnimation();
+	const [specialsRef, specialsVisible] = useScrollAnimation();
+	const [contactRef, contactVisible] = useScrollAnimation();
+
 	useEffect(() => {
 		fetchFeaturedProducts();
 	}, [fetchFeaturedProducts]);
+
 
 	return (
 		<div className='relative min-h-screen text-white overflow-hidden'>
@@ -35,12 +42,11 @@ const HomePage = () => {
 						Experience gourmet fast food like never before. Fresh ingredients, bold flavors, and unforgettable moments in every bite.
 					</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-						<button className="bg-[#D8973C] hover:bg-[#D8973C]/90 text-white font-semibold px-6 py-2 text-lg shadow-pop rounded-2xl">
-							Order Now
-						</button>
-						<button className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary px-8 py-4 text-lg bg-[#D8973C]/70 rounded-2xl">
-							View Menu
-						</button>
+						<Link to="/login">
+							<button className="bg-[#D8973C] hover:bg-[#D8973C]/90 text-white font-semibold px-6 py-2 text-lg shadow-pop rounded-2xl">
+								Order Now
+							</button>
+						</Link>
 					</div>
 					</div>
 					
@@ -67,7 +73,14 @@ const HomePage = () => {
 					Discover the our delicious foods offerings across various categories
 				</p>
 
-				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+				<div 
+					ref={categoriesRef}
+					className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 transition-all duration-1000 ease-out ${
+						categoriesVisible 
+							? 'opacity-100 translate-y-0' 
+							: 'opacity-0 translate-y-20'
+					}`}
+				>
 					{categories.map((category) => (
 						<CategoryItem category={category} key={category.name} />
 					))}
@@ -75,8 +88,26 @@ const HomePage = () => {
 
 				{!isLoading && products.length > 0 && <FeaturedProducts featuredProducts={products} />}
 			</div>
-			<Specials />
-			<Contact />
+			<div 
+				ref={specialsRef}
+				className={`transition-all duration-1000 ease-out ${
+					specialsVisible 
+						? 'opacity-100 translate-y-0' 
+						: 'opacity-0 translate-y-20'
+				}`}
+			>
+				<Specials />
+			</div>
+			<div 
+				ref={contactRef}
+				className={`transition-all duration-1000 ease-out delay-200 ${
+					contactVisible 
+						? 'opacity-100 translate-y-0' 
+						: 'opacity-0 translate-y-20'
+				}`}
+			>
+				<Contact />
+			</div>
 			<Footer />
 		</div>
 	);

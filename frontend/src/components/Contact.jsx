@@ -10,55 +10,55 @@ const Contact = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="bg-[#d8c99b] border-none shadow-pop">
+          <div className="bg-[#ebe0c3] border-none shadow-pop py-10 rounded-2xl">
             <div>
-              <h2 className="text-xl font-bold text-primary text-center">Downtown Location</h2>
+              <h2 className="text-xl font-bold text-[#273E47] text-center">Downtown Location</h2>
             </div>
             <div className="text-center">
-              <p className="text-primary/80 mb-4">
+              <p className="text-[#273E47]/80 mb-4 mt-4">
                 123 Main Street<br />
                 Downtown City, DC 12345
               </p>
-              <p className="text-primary font-semibold mb-4">
+              <p className="text-[#273E47] font-semibold mb-4">
                 Open Daily: 11 AM - 10 PM
               </p>
-              <button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <button className=" hover:bg-[#273E47]/90 hover:text-[#D8C99B] bg-[#273E47] text-[#D8C99B] p-2.5 rounded-md">
                 Get Directions
               </button>
             </div>
           </div>
           
-          <div className="bg-warm-accent border-none shadow-pop">
+          <div className="bg-[#ebe0c3] border-none shadow-pop py-10 rounded-2xl">
             <div>
-              <h2 className="text-xl font-bold text-primary text-center">Downtown Location</h2>
+              <h2 className="text-xl font-bold text-[#273E47] text-center">Downtown Location</h2>
             </div>
             <div className="text-center">
-              <p className="text-primary/80 mb-4">
+              <p className="text-[#273E47]/80 mb-4 mt-4">
                 123 Main Street<br />
                 Downtown City, DC 12345
               </p>
-              <p className="text-primary font-semibold mb-4">
+              <p className="text-[#273E47] font-semibold mb-4">
                 Open Daily: 11 AM - 10 PM
               </p>
-              <button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <button className=" hover:bg-[#273E47]/90 hover:text-[#D8C99B] bg-[#273E47] text-[#D8C99B] p-2.5 rounded-md mt-2">
                 Get Directions
               </button>
             </div>
           </div>
           
-          <div className="bg-warm-accent border-none shadow-pop">
+          <div className="bg-[#ebe0c3] border-none shadow-pop py-10 rounded-2xl">
             <div>
-              <h2 className="text-xl font-bold text-primary text-center">Downtown Location</h2>
+              <h2 className="text-xl font-bold text-[#273E47] text-center">Downtown Location</h2>
             </div>
             <div className="text-center">
-              <p className="text-primary/80 mb-4">
+              <p className="text-[#273E47]/80 mb-4 mt-4">
                 123 Main Street<br />
                 Downtown City, DC 12345
               </p>
-              <p className="text-primary font-semibold mb-4">
+              <p className="text-[#273E47] font-semibold mb-4">
                 Open Daily: 11 AM - 10 PM
               </p>
-              <button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <button className=" hover:bg-[#273E47]/90 hover:text-[#D8C99B] bg-[#273E47] text-[#D8C99B] p-2.5 rounded-md">
                 Get Directions
               </button>
             </div>
@@ -66,8 +66,8 @@ const Contact = () => {
         </div>
         
         <div className="text-center mt-16">
-          <h3 className="text-2xl font-bold text-primary-foreground mb-4">Questions? Call us!</h3>
-          <p className="text-3xl font-bold text-accent">(555) 123-TASTE</p>
+          <h3 className="text-2xl font-bold text-[#ebe0c3] mb-4">Questions? Call us!</h3>
+          <p className="text-3xl font-bold text-[#D8973C]">+855 12345678</p>
         </div>
       </div>
     </section>

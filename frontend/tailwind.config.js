@@ -88,10 +88,20 @@ export default {
 						height: '0'
 					}
 				},
+				'slideInLeft': {
+					from: { transform: 'translateX(-100%)' },
+					to: { transform: 'translateX(0)' }
+				},
+				'slideInBottom': {
+					from: { transform: 'translateY(100%)' },
+					to: { transform: 'translateY(0)' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'slideInLeft': 'slideInLeft 0.3s ease-out',
+				'slideInBottom': 'slideInBottom 0.3s ease-out',
 			}
 		}
 	},
